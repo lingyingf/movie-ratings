@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ movie.title }}</h1>
+
+<p>
+  {{ movie.overview }}
+</p>
+
+
+
+<!-- intake movie name, review from 1 to 10, and user email in session -->
+{% if session.get('user_email') %}
+<p>
+    <form action="/movies/{{ movie.movie_id }}/review" method="POST">
+        <p>
+            Review (scale 0-10) <input type="text" name="review">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+</p>
+{% endif %}
+
+
+<img src="{{ movie.poster_path }}">
+{% endblock %}
